@@ -7,22 +7,24 @@
                      src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
             </a>
         </li>
-        <li>
-            <a routerLink="/lessons">Lessons</a>
-        </li>
-        <li>
-            <a routerLink="/signup">Sign Up</a>
-        </li>
-        <li>
-            <a routerLink="/login">Login</a>
-        </li>
-        <li>
-            <a>Logout</a>
-        </li>
+        <ng-container *ngIf="user$ | async as user">
+            <li>
+                <a routerLink="/lessons">Lessons</a>
+            </li>
+            <li *ngIf="isLoggedOut$ | async">
+                <a routerLink="/signup">Sign Up</a>
+            </li>
+            <li *ngIf="isLoggedOut$ | async">
+                <a routerLink="/login">Login</a>
+            </li>
+            <li *ngIf="isLoggedIn$ | async">
+                <a>Logout</a>
+            </li>
+        </ng-container>
+
     </ul>
 
 </header>
-
 
 <main>
 
@@ -31,8 +33,6 @@
         <img class="course-logo"
              src="https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-security-thumbnail.png">
     </div>
-
-
     <router-outlet></router-outlet>
 
 </main>
