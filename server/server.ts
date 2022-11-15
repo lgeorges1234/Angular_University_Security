@@ -1,17 +1,18 @@
-
-
 import * as express from 'express';
 import {Application} from "express";
 import * as fs from 'fs';
 import * as https from 'https';
 import { createUser } from './create-user.route';
+import { getUser } from './get-user.route';
 import {readAllLessons} from "./read-all-lessons.route";
 
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const app: Application = express();
 
 app.use(bodyParser.json());
+app.use(cookieParser())
 
 const commandLineArgs = require('command-line-args');
 
@@ -29,6 +30,9 @@ app.route('/api/lessons')
 app.route('/api/signup')
     .post(createUser);
 
+app.route('/api/user')
+    .get(getUser);
+
 if (options.secure) {
 
     const httpsServer = https.createServer({
@@ -41,12 +45,10 @@ if (options.secure) {
 
 }
 else {
-
     // launch an HTTP Server
     const httpServer = app.listen(9000, () => {
         console.log("HTTP Server running at https://localhost:" + httpServer.address().port);
     });
-
 }
 
 

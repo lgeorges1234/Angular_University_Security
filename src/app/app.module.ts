@@ -14,7 +14,7 @@ import { AuthService } from './services/auth.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/shareReplay';
 import 'rxjs/add/operator/do';
-
+import 'rxjs/operator/filter';
 
 @NgModule({
   declarations: [

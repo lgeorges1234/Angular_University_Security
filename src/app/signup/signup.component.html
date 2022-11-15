@@ -1,5 +1,9 @@
+<div class="messges messages-error" *ngIf="errors?.lenght">
+    <div class="messages-container">
+        <div *ngFor="let error of errors">{{messagePerErrorCode[error]}}</div>
+    </div>
+</div>
 <form autocomplete="off" novalidate  [formGroup]="form">
-
     <fieldset>
         <legend>Sign Up</legend>
 
