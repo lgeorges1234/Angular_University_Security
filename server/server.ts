@@ -4,6 +4,8 @@ import * as fs from 'fs';
 import * as https from 'https';
 import { createUser } from './create-user.route';
 import { getUser } from './get-user.route';
+import { login } from './login.route';
+import { logout } from './logout.route';
 import {readAllLessons} from "./read-all-lessons.route";
 
 const bodyParser = require('body-parser');
@@ -32,6 +34,12 @@ app.route('/api/signup')
 
 app.route('/api/user')
     .get(getUser);
+
+app.route('api/logout')
+    .post(logout);
+
+app.route('api/login')
+    .post(login);
 
 if (options.secure) {
 
